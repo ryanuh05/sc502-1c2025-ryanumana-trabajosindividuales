@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Cargas sociales e Impuesto a la Renta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="card shadow p-4">
+            <h2 class="text-center mb-4">Cálculo de Cargas Sociales e Impuesto</h2>
+            
+            <div class="mb-3">
+                <label for="salarioBruto" class="form-label">Salario Bruto (₡):</label>
+                <input type="number" class="form-control" id="salarioBruto" placeholder="Ingrese su salario bruto">
+            </div>
+            
+            <button class="btn btn-primary w-100" onclick="calcularDeducciones()">
+                Calcular <i class="fas fa-calculator"></i>
+            </button>
+
+            <div class="mt-4">
+                <h4>Resultados</h4>
+                <p><strong>Cargas Sociales (10.5%):</strong> ₡<span id="cargasSociales">0.00</span></p>
+                <p><strong>Impuesto sobre la Renta:</strong> ₡<span id="impuestoRenta">0.00</span></p>
+                <p class="fw-bold"><strong>Salario Neto:</strong> ₡<span id="salarioNeto">0.00</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calcularDeducciones() {
+            let salarioBruto = parseFloat(document.getElementById("salarioBruto").value);
+
+            if (isNaN(salarioBruto) || salarioBruto <= 0) {
+                alert("Ingrese un salario válido");
+                return;
+            }
+
+            // Calcular cargas sociales (10.5%)
+            let cargasSociales = salarioBruto * 0.105;
+
+            // Calcular impuesto sobre la renta
+            let impuestoRenta = 0;
+            if (salarioBruto > 4845000) {
+                impuestoRenta += (salarioBruto - 4845000) * 0.25;
+                salarioBruto = 4845000;
+            }
+            if (salarioBruto > 2423000) {
+                impuestoRenta += (salarioBruto - 2423000) * 0.20;
+                salarioBruto = 2423000;
+            }
+            if (salarioBruto > 1381000) {
+                impuestoRenta += (salarioBruto - 1381000) * 0.15;
+                salarioBruto = 1381000;
+            }
+            if (salarioBruto > 941000) {
+                impuestoRenta += (salarioBruto - 941000) * 0.10;
+            }
+
+            // Calcular salario neto
+            let salarioNeto = salarioBruto - cargasSociales - impuestoRenta;
+
+            // Mostrar resultados
+            document.getElementById("cargasSociales").textContent = cargasSociales.toFixed(2);
+            document.getElementById("impuestoRenta").textContent = impuestoRenta.toFixed(2);
+            document.getElementById("salarioNeto").textContent = salarioNeto.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
