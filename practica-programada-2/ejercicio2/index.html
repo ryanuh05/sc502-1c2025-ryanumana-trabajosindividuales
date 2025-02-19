@@ -37,18 +37,18 @@
     <script>
         document.addEventListener('DOMContentLoaded', function(){
  
-            //obtener el formulario
+            
             const form = document.getElementById('login-form');
-            //obtener una referencia a el login-error
+            
             const loginError = document.getElementById('login-error');
-            //vamos a reaccionar al evento submit del formulario
+            
             form.addEventListener('submit', function(e){
-                //prevenir que el formulario se envie al servidor
+                
                 e.preventDefault();
-                //obtener una referencia al campo de texto de usuario y password
+                
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
-                //validacion sencilla del usuario y password.
+                
                 if(email === 'test@example.com' && password === 'password123'){
                     window.location.href = 'dashboard.html';
                 }else{
