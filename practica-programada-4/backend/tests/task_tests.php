@@ -18,7 +18,5 @@ if(editTask($idTarea,"tarea editada", "tarea editada desde el test",'2025-05-01'
     echo "Tarea editada \n";
 }
 
-echo "Eliminando la tarea\n";
-if(deleteTask($idTarea)){
-    echo "Tarea eliminada";
-}
+
+

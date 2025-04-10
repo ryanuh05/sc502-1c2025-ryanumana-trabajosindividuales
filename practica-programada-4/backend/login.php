@@ -29,9 +29,8 @@ if ($method == 'POST') {
         $username = $_POST['email'];
         $password = $_POST['password'];
         if (login($username, $password)) {
-           
             http_response_code(200);
-            
+            echo json_encode(["message" => "Login exitoso"]);
         } else {
             http_response_code(401);
             echo json_encode(['error' => "Usuario o password incorrecto"]);

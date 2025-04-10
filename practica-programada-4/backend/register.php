@@ -25,7 +25,7 @@ if ($method == 'POST') {
         $password = $_POST['password'];
         if (userRegistry($username, $password, $username)) {
             http_response_code(200);
-           
+            echo json_encode(["message" => "Registro de usuario exitoso"]);
         } else {
             http_response_code(500);
             echo json_encode(['error' => "Error al registrar usuario"]);
